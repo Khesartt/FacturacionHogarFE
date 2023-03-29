@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "RedHat";
+  src: local("RedHat"), url(src\assets\fonts\TTF\RedHatDisplay-Bold.ttf) format("truetype");
+}

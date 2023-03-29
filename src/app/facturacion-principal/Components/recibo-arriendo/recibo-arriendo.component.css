@@ -1,0 +1,225 @@
+.container {
+  margin: 1em;
+  padding: 0;
+}
+.recibo {
+  width: 850px;
+  height: 600px;
+  position: relative;
+  margin-left: 25%;
+}
+.bodyInfo {
+  width: 100%;
+  padding: 5px;
+}
+/*contenedor por seccion*/
+.encabezado {
+  height: 20%;
+  margin-top: 8px;
+}
+.informacion {
+  height: 50%;
+  margin-top: 8px;
+}
+.fechas {
+  height: 10%;
+  margin-top: 6px;
+}
+.firmas {
+  height: 20%;
+  margin-top: 6px;
+}
+/*contenedor por seccion*/
+
+/*seccion de los titulos*/
+.colTitle,
+.titleInfo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.titleText {
+  margin-right: 4px;
+  border: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  border-radius: 0.5rem;
+height: 105%;
+}
+.tag,
+.tagClient,
+.tagDates {
+  font-family: 'Times New Roman', Times, serif;
+  color: rgba(26, 124, 236, 0.651);
+  font-weight: bolder;
+  font-size: 30px;
+  text-align: center;
+  line-height: 1.5em;
+}
+.tagClient {
+  font-size: 24px;
+  margin-top: 10px;
+}
+.tagDates {
+  display: inline;
+  position: absolute;
+  font-size: 20px;
+  margin-top: 2px;
+  margin-left:4px;
+}
+.rowInfo {
+  margin: 0;
+  padding: 0;
+  height: 50%;
+  width: 100%;
+}
+.anotherTitleInfo {
+  margin-left: 4px;
+}
+.valueType{
+margin-bottom: 4px;
+}
+.dateType{
+margin-top: 4px;
+
+}
+.value,
+.number {
+  margin-bottom: 4px;
+}
+.dateInfo {
+  margin-top: 2px;
+}
+.value {
+  margin-right: 4px;
+  border: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  border-radius: 0.5rem;
+
+}
+.number {
+  margin-left: 4px;
+  border: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  border-radius: 0.5rem;
+
+}
+.dateInfo {
+  border: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  border-radius: 0.5rem;
+}
+/*seccion de los titulos*/
+/*seccion de la informacion*/
+.dataClient {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(18, 128, 253);
+  border-radius: 1em;
+}
+.dataClientCol {
+  border-top: 1px solid rgb(18, 128, 253);
+  border-bottom: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  margin-bottom: 2px;
+  margin-top: 6px;
+}
+.nameClient {
+  margin-top: 12px;
+
+}
+.addressClient {
+  margin-bottom: 12px;
+}
+/*seccion de la informacion*/
+/*seccion de rango de fechas*/
+.dataRangeInfo {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(18, 128, 253);
+  background-color: rgba(218, 234, 255, 0.466);
+  border-radius: 0.5rem;
+}
+.dateRange {
+  border-right: 1px solid rgb(18, 128, 253);
+}
+.fromDate {
+  margin: 0;
+  width: 6%;
+}
+.special {
+  font-size: 12px;
+}
+/*seccion de rango de fechas*/
+/*seccion de firmas*/
+.firmaArrendador {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.canvaLineSing {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(18, 128, 253);
+  border-radius: 0.5rem;
+}
+.singText {
+  font-family: 'Times New Roman', Times, serif;
+  color: rgba(18, 128, 253, 0.747);
+  font-weight: lighter;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1em;
+  margin: 5px;
+}
+/*seccion de firmas*/
+/*los inputs a diseñar*/
+.spanTags {
+  position: relative;
+  margin-right: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: x-large;
+  text-align: center;
+}
+
+
+/*estilos fuera de plantilla*/
+input.transparent-input {
+  border:none !important
+}
+
+.transparent-input {
+ background-color: rgba(0, 0, 0, 0);
+ border:none;
+ position: relative;
+ display: inline;
+ margin: 0;
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: x-large;
+}
+input.transparent-input{
+     background-color:rgba(0,0,0,0) !important;
+     border:none !important;
+}
+.inputValorNumero{
+    width: 85%;
+}
+.inputNumeroRecibo{
+  width: 70%;
+}
+.inputfechaRecibo{
+  width: 77.5%;
+}
+.inputnombre,.inputvalorTexto,.inputdireccion{
+  width: 84%;
+}
+.inputconcepto{
+  width: 55%;
+}

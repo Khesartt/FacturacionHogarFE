@@ -1,0 +1,34 @@
+/* * {
+    border: 1px solid red;
+} */
+.navheader{
+  position: sticky;
+  margin: 0;
+  margin-bottom: 10px;
+  background-color: rgb(235, 204, 164);
+  height: 8vh;
+
+}
+.iconHouse{
+  font-size: 25px;
+}
+.navText{
+  font-family:"redhat",Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 23px;
+  margin-right: 1.5em;
+
+}
+.navText:hover{
+  color: rgb(182, 107, 107);
+  font-size: 23px;
+  text-decoration-line: underline;
+}
+.desingnav{
+width: 50%;
+position: relative;
+margin-left: 25%;
+}
+/* .navTextOptions{
+  margin-right: 1.5em;
+} */
