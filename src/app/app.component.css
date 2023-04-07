@@ -7,7 +7,6 @@
   margin-bottom: 10px;
   background-color: rgb(235, 204, 164);
   height: 8vh;
-
 }
 .iconHouse{
   font-size: 25px;
@@ -17,12 +16,10 @@
   color: black;
   font-size: 23px;
   margin-right: 1.5em;
-
 }
 .navText:hover{
   color: rgb(182, 107, 107);
   font-size: 23px;
-  text-decoration-line: underline;
 }
 .desingnav{
 width: 50%;

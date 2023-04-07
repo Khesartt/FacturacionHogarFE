@@ -1,3 +1,6 @@
+/* * {
+    border: 1px solid red;
+} */
 .container {
   margin: 1em;
   padding: 0;
@@ -222,4 +225,27 @@ input.transparent-input{
 }
 .inputconcepto{
   width: 55%;
+}
+.buttonToSend{
+  position: relative;
+  margin-left: 550px;
+}
+.cardButtons{
+  background-color: rgba(255, 255, 255, 0.842);
+  border-color: black;
+}
+.buttonsCards{
+  position: relative;
+  left: -80px;
+  top:80px;
+  width: 40%;
+
+}
+.buttonsMenu{
+  margin: 10px;
+  text-align: center;
+}
+.buttonMenu{
+  margin: 1px;
+  margin-bottom: 40px;
 }
