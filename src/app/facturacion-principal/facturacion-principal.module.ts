@@ -6,6 +6,7 @@ import { ReciboEgresoComponent } from './Components/recibo-egreso/recibo-egreso.
 import { NavFacturacionComponent } from './Components/nav-facturacion/nav-facturacion.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {  HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
