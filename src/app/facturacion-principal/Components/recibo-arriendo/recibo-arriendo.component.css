@@ -34,6 +34,17 @@
 }
 /*contenedor por seccion*/
 
+/*seccion botones*/
+
+.button-container{
+ margin-top: 2%; 
+}
+
+.button-margin {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 /*seccion de los titulos*/
 .colTitle,
 .titleInfo {
@@ -226,10 +237,6 @@ input.transparent-input{
 .inputconcepto{
   width: 55%;
 }
-.buttonToSend{
-  position: relative;
-  margin-left: 550px;
-}
 .cardButtons{
   background-color: rgba(255, 255, 255, 0.842);
   border-color: black;
@@ -245,7 +252,4 @@ input.transparent-input{
   margin: 10px;
   text-align: center;
 }
-.buttonMenu{
-  margin: 1px;
-  margin-bottom: 40px;
-}
+

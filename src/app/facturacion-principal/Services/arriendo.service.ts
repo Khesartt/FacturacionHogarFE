@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cliente } from '../Models/ICliente';
+import { Client } from '../Models/IClient';
 
 
 
@@ -11,15 +11,16 @@ import { Cliente } from '../Models/ICliente';
 })
 export class arriendoService {
 
-private baseUrl:string=environment.baseUrl;
+  private readonly baseUrl: string = environment.baseUrl;
+  private readonly getClientUrl : string = environment.getClientsUrl;
+  
+  constructor(private http: HttpClient) {
 
-constructor(private http:HttpClient){
 
+  }
 
-}
-
-getClients():Observable<Cliente[]>{
-return this.http.get<Cliente[]>(this.baseUrl+"/api/Cliente/ObtenerTodosLosClientes");
-}
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.baseUrl + this.getClientUrl);
+  }
 
 }

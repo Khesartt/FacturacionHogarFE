@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Arriendo</title>
-    </head>
-    <body>
-      <div class="row">
-        <div class="nav-item dropdown">
-          <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Clientes
-          </button>
-          <ul class="dropdown-menu dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arriendo</title>
+</head>
+
+<body>
+    <div class="row justify-content-center button-container">
+        <div class="col-auto nav-item dropdown" (click)="loadClients()">
+            <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown" aria-expanded="false">
+                Clientes
+            </button>
+            <ul class="dropdown-menu dropdown-menu button-margin">
+                <li *ngFor="let client of clients">
+                    <a class="dropdown-item" (click)="PreLoadForm(client.id)">{{ client.names }}</a>
+                </li>
+            </ul>
         </div>
-            <div class="col-8">
-              <form [formGroup]="formArriendo" (submit)="send()">
+        <div class="col-auto">
+            <a class="btn btn-dark buttonMenu button-margin" (click)="resetData()">Reiniciar</a>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-dark buttonMenu button-margin" (click)="printData()">Solo Imprimir</a>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-success buttonToSend button-margin" (click)="SaveAndPrint()">Guardar e Imprimir</a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <form [formGroup]="formArriendo" (submit)="send()">
                 <div class="container recibo">
                     <div class="bodyInfo encabezado">
                         <div class="row titleInfo">
@@ -31,19 +44,22 @@
                                     <div class="col value">
                                         <label for="titleText" class="tag">$</label>
                                         <!-- <span id="ValorRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputValorNumero" type="text" id="valorNumero" formcontrolname="valorNumero">
+                                        <input class="form-control transparent-input inputValorNumero" type="text"
+                                            id="valorNumero" formcontrolname="valorNumero">
                                     </div>
                                     <div class="col number">
                                         <label for="titleText" class="tag">No.</label>
                                         <!-- <span id="NumeroRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputNumeroRecibo" type="text" id="NumeroRecibo" formcontrolname="NumeroRecibo">
+                                        <input class="form-control transparent-input inputNumeroRecibo" type="text"
+                                            id="NumeroRecibo" formcontrolname="NumeroRecibo">
                                     </div>
                                 </div>
                                 <div class="row rowInfo dateType">
                                     <div class="col dateInfo">
                                         <label for="titleText" class="tag">Fecha:</label>
                                         <!-- <span id="FechaRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputfechaRecibo" type="text" id="fechaRecibo" formcontrolname="fechaRecibo">
+                                        <input class="form-control transparent-input inputfechaRecibo" type="text"
+                                            id="fechaRecibo" formcontrolname="fechaRecibo">
                                     </div>
                                 </div>
                             </div>
@@ -54,24 +70,28 @@
                             <div class="col-12 dataClientCol nameClient">
                                 <label for="nameClient" class="tagClient">Recibí de:</label>
                                 <!-- <span id="arrendatario" class="spanTags">prueba</span> -->
-                                <input class="form-control transparent-input inputnombre" type="text" id="nombre" formcontrolname="nombre">
+                                <input class="form-control transparent-input inputnombre" type="text" id="nombre"
+                                    formcontrolname="nombre">
                             </div>
                             <div class="col-12 dataClientCol valueClient">
                                 <label for="valueClient" class="tagClient">La suma de:</label>
                                 <!-- <span id="ValorTextoRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputvalorTexto" type="text" id="valorTexto" formcontrolname="valorTexto">
+                                <input class="form-control transparent-input inputvalorTexto" type="text"
+                                    id="valorTexto" formcontrolname="valorTexto">
 
                             </div>
                             <div class="col-12 dataClientCol siteClient">
                                 <label for="siteClient" class="tagClient">Por concepto de arrendamiento de:</label>
                                 <!-- <span id="sitioRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputconcepto" type="text" id="concepto" formcontrolname="concepto">
+                                <input class="form-control transparent-input inputconcepto" type="text" id="concepto"
+                                    formcontrolname="concepto">
 
                             </div>
                             <div class="col-12 dataClientCol addressClient">
                                 <label for="addressClient" class="tagClient">Situado en:</label>
                                 <!-- <span id="DireccionRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdireccion" type="text" id="direccion" formcontrolname="direccion">
+                                <input class="form-control transparent-input inputdireccion" type="text" id="direccion"
+                                    formcontrolname="direccion">
 
                             </div>
                         </div>
@@ -84,17 +104,20 @@
                             <div class="col dateRange">
                                 <label for="fromDate" class="tagDates special">Día</label>
                                 <!-- <span id="diaDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI" formcontrolname="diaFI">
+                                <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI"
+                                    formcontrolname="diaFI">
                             </div>
                             <div class="col dateRange">
                                 <label for="fromDate" class="tagDates special">Mes</label>
                                 <!-- <span id="mesDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputmesFI" type="text" id="mesFI" formcontrolname="mesFI">
+                                <input class="form-control transparent-input inputmesFI" type="text" id="mesFI"
+                                    formcontrolname="mesFI">
                             </div>
                             <div class="col dateRange">
                                 <label for="fromDate" class="tagDates special">Año</label>
                                 <!-- <span id="anioDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputanioFI" type="text" id="anioFI" formcontrolname="anioFI">
+                                <input class="form-control transparent-input inputanioFI" type="text" id="anioFI"
+                                    formcontrolname="anioFI">
                             </div>
                             <div class="fromDate dateRange">
                                 <label for="fromDate" class="tagDates">Al</label>
@@ -102,17 +125,20 @@
                             <div class="col dateRange">
                                 <label for="fromDate" class="tagDates special">Día</label>
                                 <!-- <span id="diaARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF" formcontrolname="diaFF">
+                                <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF"
+                                    formcontrolname="diaFF">
                             </div>
                             <div class="col dateRange">
                                 <label for="fromDate" class="tagDates special">Mes</label>
                                 <!-- <span id="mesARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputmesFF" type="text" id="mesFF" formcontrolname="mesFF">
+                                <input class="form-control transparent-input inputmesFF" type="text" id="mesFF"
+                                    formcontrolname="mesFF">
                             </div>
                             <div class="col">
                                 <label for="fromDate" class="tagDates special">Año</label>
                                 <!-- <span id="anioARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputanioFF" type="text" id="anioFF" formcontrolname="anioFF">
+                                <input class="form-control transparent-input inputanioFF" type="text" id="anioFF"
+                                    formcontrolname="anioFF">
                             </div>
                         </div>
                     </div>
@@ -123,38 +149,16 @@
                                 <label class="singText">Firma del Arrendador</label>
                                 <br><br>
                                 <svg width="97%" height="5%" class="singText">
-                                    <line x1="0" y1="0" x2="400" y2="0" stroke-width="2" stroke="rgb(18, 128, 253)"/>
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke-width="2" stroke="rgb(18, 128, 253)" />
                                 </svg>
                                 <label class="singText">C.C o NIT.</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br><br>
-                <button class="btn btn-success buttonToSend">Guardar e Imprimir</button>
             </form>
+        </div>
+    </div>
+</body>
 
-            </div>
-
-            <div class="col-4">
-              <div class="card mb-3 buttonsCards">
-                <div class="card-body cardButtons">
-                  <h5 class="card-title"></h5>
-                  <p class="card-text"></p>
-                  <div class="row buttonsMenu">
-                    <div>
-                      <a class="col btn btn-dark buttonMenu" (click)="generarData()">Generar</a>
-                    </div>
-                    <div>
-                      <a  class="col btn btn-dark buttonMenu"(click)="resetData()">Reiniciar</a>
-                    </div>
-                    <div>
-                      <a  class="col btn btn-dark buttonMenu"(click)="printData()">Solo Imprimir</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-      </div>
-    </body>
 </html>
