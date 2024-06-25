@@ -5,160 +5,206 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>Arriendo</title>
 </head>
 
 <body>
-    <div class="row justify-content-center button-container">
-        <div class="col-auto nav-item dropdown" (click)="loadClients()">
-            <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown" aria-expanded="false">
-                Clientes
-            </button>
-            <ul class="dropdown-menu dropdown-menu button-margin">
-                <li *ngFor="let client of clients">
-                    <a class="dropdown-item" (click)="PreLoadForm(client.id)">{{ client.names }}</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-auto">
-            <a class="btn btn-dark buttonMenu button-margin" (click)="resetData()">Reiniciar</a>
-        </div>
-        <div class="col-auto">
-            <a class="btn btn-dark buttonMenu button-margin" (click)="printData()">Solo Imprimir</a>
-        </div>
-        <div class="col-auto">
-            <a class="btn btn-success buttonToSend button-margin" (click)="SaveAndPrint()">Guardar e Imprimir</a>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <form [formGroup]="formArriendo" (submit)="send()">
-                <div class="container recibo">
-                    <div class="bodyInfo encabezado">
-                        <div class="row titleInfo">
-                            <div class="col colTitle titleText">
-                                <label for="titleText" class="tag">RECIBO DE ARRENDAMIENTO</label>
-                            </div>
-                            <div class="col colTitle anotherTitleInfo">
-                                <div class="row rowInfo valueType">
-                                    <div class="col value">
-                                        <label for="titleText" class="tag">$</label>
-                                        <!-- <span id="ValorRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputValorNumero" type="text"
-                                            id="valorNumero" formcontrolname="valorNumero">
-                                    </div>
-                                    <div class="col number">
-                                        <label for="titleText" class="tag">No.</label>
-                                        <!-- <span id="NumeroRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputNumeroRecibo" type="text"
-                                            id="NumeroRecibo" formcontrolname="NumeroRecibo">
-                                    </div>
+    <br><br>
+    <div class="row content">
+
+        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" (submit)="send()">
+            <div class="container recibo">
+                <div class="bodyInfo encabezado">
+                    <div class="row titleInfo">
+                        <div class="col colTitle titleText">
+                            <label for="titleText" class="tag">RECIBO DE ARRENDAMIENTO</label>
+                        </div>
+                        <div class="col colTitle anotherTitleInfo">
+                            <div class="row rowInfo valueType">
+                                <div class="col value">
+                                    <label for="titleText" class="tag">$</label>
+                                    <!-- <span id="ValorRecibo" class="spanTags"></span> -->
+                                    <input class="form-control transparent-input inputValorNumero" type="text"
+                                        id="valorNumero" formcontrolname="valorNumero">
                                 </div>
-                                <div class="row rowInfo dateType">
-                                    <div class="col dateInfo">
-                                        <label for="titleText" class="tag">Fecha:</label>
-                                        <!-- <span id="FechaRecibo" class="spanTags"></span> -->
-                                        <input class="form-control transparent-input inputfechaRecibo" type="text"
-                                            id="fechaRecibo" formcontrolname="fechaRecibo">
-                                    </div>
+                                <div class="col number">
+                                    <label for="titleText" class="tag">No.</label>
+                                    <!-- <span id="NumeroRecibo" class="spanTags"></span> -->
+                                    <input class="form-control transparent-input inputNumeroRecibo" type="text"
+                                        id="NumeroRecibo" formcontrolname="NumeroRecibo">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="bodyInfo informacion">
-                        <div class="row dataClient">
-                            <div class="col-12 dataClientCol nameClient">
-                                <label for="nameClient" class="tagClient">Recibí de:</label>
-                                <!-- <span id="arrendatario" class="spanTags">prueba</span> -->
-                                <input class="form-control transparent-input inputnombre" type="text" id="nombre"
-                                    formcontrolname="nombre">
-                            </div>
-                            <div class="col-12 dataClientCol valueClient">
-                                <label for="valueClient" class="tagClient">La suma de:</label>
-                                <!-- <span id="ValorTextoRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputvalorTexto" type="text"
-                                    id="valorTexto" formcontrolname="valorTexto">
-
-                            </div>
-                            <div class="col-12 dataClientCol siteClient">
-                                <label for="siteClient" class="tagClient">Por concepto de arrendamiento de:</label>
-                                <!-- <span id="sitioRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputconcepto" type="text" id="concepto"
-                                    formcontrolname="concepto">
-
-                            </div>
-                            <div class="col-12 dataClientCol addressClient">
-                                <label for="addressClient" class="tagClient">Situado en:</label>
-                                <!-- <span id="DireccionRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdireccion" type="text" id="direccion"
-                                    formcontrolname="direccion">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bodyInfo fechas">
-                        <div class="row dataRangeInfo">
-                            <div class="fromDate dateRange">
-                                <label for="fromDate" class="tagDates">Del</label>
-                            </div>
-                            <div class="col dateRange">
-                                <label for="fromDate" class="tagDates special">Día</label>
-                                <!-- <span id="diaDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI"
-                                    formcontrolname="diaFI">
-                            </div>
-                            <div class="col dateRange">
-                                <label for="fromDate" class="tagDates special">Mes</label>
-                                <!-- <span id="mesDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputmesFI" type="text" id="mesFI"
-                                    formcontrolname="mesFI">
-                            </div>
-                            <div class="col dateRange">
-                                <label for="fromDate" class="tagDates special">Año</label>
-                                <!-- <span id="anioDRecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputanioFI" type="text" id="anioFI"
-                                    formcontrolname="anioFI">
-                            </div>
-                            <div class="fromDate dateRange">
-                                <label for="fromDate" class="tagDates">Al</label>
-                            </div>
-                            <div class="col dateRange">
-                                <label for="fromDate" class="tagDates special">Día</label>
-                                <!-- <span id="diaARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF"
-                                    formcontrolname="diaFF">
-                            </div>
-                            <div class="col dateRange">
-                                <label for="fromDate" class="tagDates special">Mes</label>
-                                <!-- <span id="mesARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputmesFF" type="text" id="mesFF"
-                                    formcontrolname="mesFF">
-                            </div>
-                            <div class="col">
-                                <label for="fromDate" class="tagDates special">Año</label>
-                                <!-- <span id="anioARecibo" class="spanTags"></span> -->
-                                <input class="form-control transparent-input inputanioFF" type="text" id="anioFF"
-                                    formcontrolname="anioFF">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bodyInfo firmas">
-                        <div class="row firmaArrendador">
-                            <div class="col"></div>
-                            <div class="col canvaLineSing">
-                                <label class="singText">Firma del Arrendador</label>
-                                <br><br>
-                                <svg width="97%" height="5%" class="singText">
-                                    <line x1="0" y1="0" x2="400" y2="0" stroke-width="2" stroke="rgb(18, 128, 253)" />
-                                </svg>
-                                <label class="singText">C.C o NIT.</label>
+                            <div class="row rowInfo dateType">
+                                <div class="col dateInfo">
+                                    <label for="titleText" class="tag">Fecha:</label>
+                                    <!-- <span id="FechaRecibo" class="spanTags"></span> -->
+                                    <input class="form-control transparent-input inputfechaRecibo" type="text"
+                                        id="fechaRecibo" formcontrolname="fechaRecibo">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="bodyInfo informacion">
+                    <div class="row dataClient">
+                        <div class="col-12 dataClientCol nameClient">
+                            <label for="nameClient" class="tagClient">Recibí de:</label>
+                            <!-- <span id="arrendatario" class="spanTags">prueba</span> -->
+                            <input class="form-control transparent-input inputnombre" type="text" id="nombre"
+                                formcontrolname="nombre">
+                        </div>
+                        <div class="col-12 dataClientCol valueClient">
+                            <label for="valueClient" class="tagClient">La suma de:</label>
+                            <!-- <span id="ValorTextoRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputvalorTexto" type="text" id="valorTexto"
+                                formcontrolname="valorTexto">
+
+                        </div>
+                        <div class="col-12 dataClientCol siteClient">
+                            <label for="siteClient" class="tagClient">Por concepto de arrendamiento de:</label>
+                            <!-- <span id="sitioRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputconcepto" type="text" id="concepto"
+                                formcontrolname="concepto">
+
+                        </div>
+                        <div class="col-12 dataClientCol addressClient">
+                            <label for="addressClient" class="tagClient">Situado en:</label>
+                            <!-- <span id="DireccionRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputdireccion" type="text" id="direccion"
+                                formcontrolname="direccion">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bodyInfo fechas">
+                    <div class="row dataRangeInfo">
+                        <div class="fromDate dateRange">
+                            <label for="fromDate" class="tagDates">Del</label>
+                        </div>
+                        <div class="col DateRangeContainer dateRange">
+                            <label for="fromDate" class="tagDates special">Día</label>
+                            <!-- <span id="diaDRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI"
+                                formcontrolname="diaFI">
+                        </div>
+                        <div class="col DateRangeContainer dateRange">
+                            <label for="fromDate" class="tagDates special">Mes</label>
+                            <!-- <span id="mesDRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputmesFI" type="text" id="mesFI"
+                                formcontrolname="mesFI">
+                        </div>
+                        <div class="col DateRangeContainer dateRange">
+                            <label for="fromDate" class="tagDates special">Año</label>
+                            <!-- <span id="anioDRecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputanioFI" type="text" id="anioFI"
+                                formcontrolname="anioFI">
+                        </div>
+                        <div class="fromDate dateRange">
+                            <label for="fromDate" class="tagDates">Al</label>
+                        </div>
+                        <div class="col DateRangeContainer dateRange">
+                            <label for="fromDate" class="tagDates special">Día</label>
+                            <!-- <span id="diaARecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF"
+                                formcontrolname="diaFF">
+                        </div>
+                        <div class="col DateRangeContainer dateRange">
+                            <label for="fromDate" class="tagDates special">Mes</label>
+                            <!-- <span id="mesARecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputmesFF" type="text" id="mesFF"
+                                formcontrolname="mesFF">
+                        </div>
+                        <div class="col DateRangeContainer">
+                            <label for="fromDate" class="tagDates special">Año</label>
+                            <!-- <span id="anioARecibo" class="spanTags"></span> -->
+                            <input class="form-control transparent-input inputanioFF" type="text" id="anioFF"
+                                formcontrolname="anioFF">
+                        </div>
+                    </div>
+                </div>
+                <div class="bodyInfo firmas">
+                    <div class="row firmaArrendador">
+                        <div class="col"></div>
+                        <div class="col canvaLineSing">
+                            <label class="singText">Firma del Arrendador</label>
+                            <br>
+                            <svg width="97%" height="4%" class="singText singLine">
+                                <line x1="0" y1="0" x2="400" y2="0" stroke-width="2" stroke="rgb(18, 128, 253)" />
+                            </svg>
+                            <label class="singText">C.C o NIT.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-auto wrapper">
+            <div class="col">
+                <div class="col nav-item dropdown" (click)="loadClients()" style="position: relative; z-index: 1;">
+                    <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Clientes
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu button-margin" style="position: absolute; z-index: 2;">
+                        <li *ngFor="let client of clients">
+                            <a class="dropdown-item" (click)="PreLoadForm(client.id)">{{ client.names }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col containerMenu">
+                    <div class="column">
+                        <button class="button" (click)="openModal()"><i class="bi bi-person-plus"></i><span
+                                class="message-container"><span class="message">Nuevo Cliente</span></span></button>
+                    </div>
+                    <div class="column">
+                        <button class="button"><i class="bi bi-lightbulb"></i><span class="message-container"><span
+                                    class="message">Añadir Servicios</span></span></button>
+                    </div>
+                    <div class="column">
+                        <button class="button"><i class="bi bi-arrow-repeat"></i><span class="message-container"><span
+                                    class="message">Reiniciar Formulario</span></span></button>
+                    </div>
+                    <div class="column">
+                        <button class="button"><i class="bi bi-printer"></i> <span class="message-container"><span
+                                    class="message">Imprimir Factura</span></span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 
 </html>
+
+
+<!-- Modal -->
+<div class="modal fade" id="formClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formClientModal">Agregar un nuevo cliente</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <form class="" [formGroup]="formClient" (ngSubmit)="sendClient()">
+            <div class="modal-body">
+                    <div class="col">
+                        <label for="clientTextForm" class="clientFormLabel">Nombre Completo</label>
+                        <input class="form-control" type="text" id="fullName" formControlName="fullName">
+                    </div>
+                    <div class="col">
+                        <label for="clientTextForm" class="clientFormLabel">Cedula</label>
+                        <input class="form-control" type="number" id="identification" formControlName="identification">
+                    </div>
+                    <div class="col">
+                        <label for="clientTextForm" type="number" class="clientFormLabel">Telefono</label>
+                        <input class="form-control" type="number" id="phone" formControlName="phone">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-success" >Guardar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

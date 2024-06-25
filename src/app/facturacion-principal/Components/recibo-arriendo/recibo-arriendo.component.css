@@ -1,35 +1,54 @@
 /* * {
     border: 1px solid red;
 } */
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .container {
   margin: 1em;
   padding: 0;
 }
+
 .recibo {
+  background-color: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 850px;
   width: 850px;
-  height: 600px;
-  position: relative;
-  margin-left: 25%;
+  height: 620px;
 }
+
 .bodyInfo {
   width: 100%;
   padding: 5px;
 }
+
 /*contenedor por seccion*/
 .encabezado {
   height: 20%;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 .informacion {
   height: 50%;
   margin-top: 8px;
 }
 .fechas {
-  height: 10%;
+  height: 8%;
   margin-top: 6px;
 }
 .firmas {
-  height: 20%;
+  height: 17%;
   margin-top: 6px;
 }
 /*contenedor por seccion*/
@@ -41,9 +60,89 @@
 }
 
 .button-margin {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 0;
 }
+
+.content{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.formWrapperLeisure{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.containerMenu{
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  display: block;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 13px;
+  width: 60px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 10%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6px; /* Espacio entre los botones */
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  padding: 10px; 
+  margin: 5px;
+  transition: transform 0.4s;
+  position: relative;
+}
+
+.button:hover {
+  transform: scale(1.3);
+}
+
+.message-container {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px); /* Alinear a la derecha del botón */
+  transform: translateY(-50%);
+  visibility: hidden;
+  background-color: transparent;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.button:hover .message-container {
+  visibility: visible;
+}
+
+.message {
+  color: black;
+  margin: 0;
+  font-family: "redhat", Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 15px;
+}
+
+.button i {
+  font-size: 24px; 
+} 
+
 
 /*seccion de los titulos*/
 .colTitle,
@@ -53,13 +152,15 @@
   width: 100%;
   height: 100%;
 }
+
 .titleText {
   margin-right: 4px;
   border: 1px solid rgb(18, 128, 253);
   background-color: rgba(218, 234, 255, 0.466);
   border-radius: 0.5rem;
-height: 105%;
+  height: 105%;
 }
+
 .tag,
 .tagClient,
 .tagDates {
@@ -68,7 +169,7 @@ height: 105%;
   font-weight: bolder;
   font-size: 30px;
   text-align: center;
-  line-height: 1.5em;
+  line-height: 1.4em;
 }
 .tagClient {
   font-size: 24px;
@@ -81,22 +182,26 @@ height: 105%;
   margin-top: 2px;
   margin-left:4px;
 }
+
 .rowInfo {
   margin: 0;
   padding: 0;
   height: 50%;
   width: 100%;
 }
+
 .anotherTitleInfo {
   margin-left: 4px;
 }
+
 .valueType{
 margin-bottom: 4px;
 }
+
 .dateType{
 margin-top: 4px;
-
 }
+
 .value,
 .number {
   margin-bottom: 4px;
@@ -135,7 +240,7 @@ margin-top: 4px;
 }
 .dataClientCol {
   border-top: 1px solid rgb(18, 128, 253);
-  border-bottom: 1px solid rgb(18, 128, 253);
+  border-bottom: 1px solid #1280fd;
   background-color: rgba(218, 234, 255, 0.466);
   margin-bottom: 2px;
   margin-top: 6px;
@@ -158,16 +263,25 @@ margin-top: 4px;
   background-color: rgba(218, 234, 255, 0.466);
   border-radius: 0.5rem;
 }
-.dateRange {
+.DateRangeContainer {
+  flex: 1;
+  padding: 5px;
+  position: relative; /* Necesario para posicionamiento absoluto de los inputs */
+}
+
+.dateRange{
   border-right: 1px solid rgb(18, 128, 253);
 }
+
 .fromDate {
   margin: 0;
   width: 6%;
 }
+
 .special {
   font-size: 12px;
 }
+
 /*seccion de rango de fechas*/
 /*seccion de firmas*/
 .firmaArrendador {
@@ -176,6 +290,7 @@ margin-top: 4px;
   margin: 0;
   padding: 0;
 }
+
 .canvaLineSing {
   height: 100%;
   width: 100%;
@@ -184,14 +299,18 @@ margin-top: 4px;
   border: 1px solid rgb(18, 128, 253);
   border-radius: 0.5rem;
 }
+
 .singText {
   font-family: 'Times New Roman', Times, serif;
   color: rgba(18, 128, 253, 0.747);
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   line-height: 1em;
   margin: 5px;
+}
+.singLine{
+  margin-top: 6%;
 }
 /*seccion de firmas*/
 /*los inputs a diseñar*/
@@ -202,7 +321,6 @@ margin-top: 4px;
   font-size: x-large;
   text-align: center;
 }
-
 
 /*estilos fuera de plantilla*/
 input.transparent-input {
@@ -218,38 +336,47 @@ input.transparent-input {
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 font-size: x-large;
 }
+
 input.transparent-input{
      background-color:rgba(0,0,0,0) !important;
      border:none !important;
 }
+
 .inputValorNumero{
     width: 85%;
 }
+
 .inputNumeroRecibo{
   width: 70%;
 }
-.inputfechaRecibo{
-  width: 77.5%;
-}
-.inputnombre,.inputvalorTexto,.inputdireccion{
-  width: 84%;
-}
-.inputconcepto{
-  width: 55%;
-}
-.cardButtons{
-  background-color: rgba(255, 255, 255, 0.842);
-  border-color: black;
-}
-.buttonsCards{
-  position: relative;
-  left: -80px;
-  top:80px;
-  width: 40%;
 
+.inputfechaRecibo{
+  width: 70.5%;
 }
-.buttonsMenu{
-  margin: 10px;
-  text-align: center;
+
+.inputnombre,.inputvalorTexto,.inputdireccion{
+  width: 80%;
+}
+
+.inputconcepto{
+  width: 50%;
+}
+
+.inputdiaFI,
+.inputmesFI,
+.inputanioFI,
+.inputdiaFF,
+.inputmesFF,
+.inputanioFF{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 70%;
+}
+
+.clientFormLabel{
+
+  font-family: "redhat", Arial, Helvetica, sans-serif;
 }
 

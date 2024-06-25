@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Client } from '../Models/IClient';
+import { ClientInfo } from '../Models/ClientInfo';
 
 
 
@@ -13,7 +14,8 @@ export class arriendoService {
 
   private readonly baseUrl: string = environment.baseUrl;
   private readonly getClientUrl : string = environment.getClientsUrl;
-  
+  private readonly addClientUrl : string = environment.addClientUrl;
+
   constructor(private http: HttpClient) {
 
 
@@ -23,4 +25,7 @@ export class arriendoService {
     return this.http.get<Client[]>(this.baseUrl + this.getClientUrl);
   }
 
+  addClient(client:ClientInfo): Observable<Client>{
+    return this.http.put<Client>((this.baseUrl + this.addClientUrl) ,client)
+  }
 }

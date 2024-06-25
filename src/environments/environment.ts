@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseUrl:"https://localhost:7127/",
-  getClientsUrl: "api/Client/getClients"
+  getClientsUrl: "api/Client/getAll",
+  addClientUrl: "api/Client/Add"
 };
 
 /*

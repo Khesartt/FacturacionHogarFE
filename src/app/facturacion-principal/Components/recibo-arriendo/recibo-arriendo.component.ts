@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import {  FormGroup } from '@angular/forms';
 import { arriendoService } from '../../Services/arriendo.service';
 import { Client } from '../../Models/IClient';
 import { firstValueFrom } from 'rxjs';
+import { FormInitializationService } from '../../Services/FormInitializationService';
+import { plainToInstance } from 'class-transformer';
+import { ClientInfo } from '../../Models/ClientInfo';
+
+declare var bootstrap: any;
 
 @Component({
     selector: 'app-recibo-arriendo',
@@ -13,34 +17,19 @@ import { firstValueFrom } from 'rxjs';
 
 export class ReciboArriendoComponent implements OnInit {
 
-    public formArriendo: FormGroup;
+    formArriendo: FormGroup;
+    formClient: FormGroup;
+    
     public clients: Client[]
+    public client: Client
 
-    constructor(private formBuilder: FormBuilder, private arriendoService: arriendoService) {
-
+    constructor(private arriendoService: arriendoService, private formInitService: FormInitializationService) {
+        this.formArriendo = this.formInitService.createArriendoForm();
+        this.formClient = this.formInitService.createClientForm();
     }
 
     ngOnInit(): void {
-        this.preloadForm();
         this.loadClients();
-    }
-
-    preloadForm() {
-        this.formArriendo = new FormGroup({
-            valorNumero: new FormControl(""),
-            fechaRecibo: new FormControl(""),
-            nombre: new FormControl(""),
-            valorTexto: new FormControl(""),
-            concepto: new FormControl(""),
-            direccion: new FormControl(""),
-            diaFI: new FormControl(""),
-            mesFI: new FormControl(""),
-            anioFI: new FormControl(""),
-            diaFF: new FormControl(""),
-            mesFF: new FormControl(""),
-            anioFF: new FormControl(""),
-            NumeroRecibo: new FormControl(""),
-        });
     }
 
     send() {
@@ -56,19 +45,59 @@ export class ReciboArriendoComponent implements OnInit {
         }
     }
 
-
     resetData() {
         console.log("boton de borrado");
     }
     printData() {
         console.log("imprimir data");
     }
-    SaveAndPrint() {
-        console.log("testing");
+    async sendClient() {
+        const clientInfo = this.castToClientInfo(this.formClient.value);
+        try {
+            this.client = await firstValueFrom(this.arriendoService.addClient(clientInfo));
 
+            this.closeModal();
+            console.log(this.client)
+        } catch (error) {
+            console.error('Error al añadir el cliente', error);
+        }
     }
+
 
     PreLoadForm(id: number) {
         console.log('Cliente seleccionado con ID:', id);
+    }
+
+    castToClientInfo(formValue: FormGroup): ClientInfo {
+        return plainToInstance(ClientInfo, formValue);
+    }
+
+    openModal() {
+        const modalElement = document.getElementById('formClientModal');
+        if (modalElement) {
+          const myModal = new bootstrap.Modal(modalElement, {
+            keyboard: false
+          });
+          myModal.show();
+        } else {
+          console.error('Modal element not found!');
+        }
+      }
+
+      closeModal() {
+        const modalElement = document.getElementById('formClientModal');
+        if (!modalElement) {
+            console.error('Modal element not found!');
+            return;
+        }
+    
+        const myModal = bootstrap.Modal.getInstance(modalElement);
+        if (!myModal) {
+            console.error('Modal instance not found!');
+            return;
+        }
+    
+        this.formClient.reset();
+        myModal.hide();
     }
 }

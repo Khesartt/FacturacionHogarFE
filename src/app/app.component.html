@@ -7,32 +7,27 @@
         <title>Document</title>
     </head>
     <body>
-      <!-- <i class="bi bi-house-fill iconHouse"></i> -->
         <nav class="container-fluid navheader">
-            <div class="desingnav">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <a class="navbar-brand navText" href="home">Inicio</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link navText navTextOptions" href="facturacion/facturacionArriendo">Facturacion Arriendo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link navText navTextOptions" href="facturacion/facturacionEgreso">Facturacion Egresos</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link navText navTextOptions" href="facturacion/facturacionEgreso">Estadistica</a>
-                              </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+            <div class="designnav">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link navText navTextOptions" href="facturacion/facturacionArriendo">Arriendo</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link navText navTextOptions" href="facturacion/facturacionEgreso">Servicios</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link navText navTextOptions" href="facturacion/facturacionEgreso">Históricos</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
             </div>
-        </nav>
+          </nav>
         <router-outlet></router-outlet>
     </body>
 </html>

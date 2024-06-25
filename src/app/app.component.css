@@ -1,31 +1,35 @@
 /* * {
     border: 1px solid red;
 } */
-.navheader{
+.navheader {
   position: sticky;
+  top: 0; /* Asegura que la barra de navegación permanezca en la parte superior */
   margin: 0;
-  margin-bottom: 10px;
-  background-color: rgb(235, 204, 164);
+  background-color: rgb(0, 0, 0);
   height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.iconHouse{
-  font-size: 25px;
-}
-.navText{
-  font-family:"redhat",Arial, Helvetica, sans-serif;
-  color: black;
-  font-size: 23px;
-  margin-right: 1.5em;
-}
-.navText:hover{
-  color: rgb(182, 107, 107);
+
+.navText {
+  font-family: "redhat", Arial, Helvetica, sans-serif;
+  color: white;
   font-size: 23px;
 }
-.desingnav{
-width: 50%;
-position: relative;
-margin-left: 25%;
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
 }
-/* .navTextOptions{
-  margin-right: 1.5em;
-} */
+
+.navText:hover {
+  color: rgb(199, 170, 132);
+}
+
+.designnav {
+  width: 100%;
+}
+
