@@ -11,7 +11,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .container {
@@ -375,8 +375,17 @@ input.transparent-input{
   height: 70%;
 }
 
-.clientFormLabel{
+.modal-centered {
+  position: relative;
+  transform: translate(0, -130%);
+}
 
+.clientFormLabel{
   font-family: "redhat", Arial, Helvetica, sans-serif;
 }
 
+.bodyClientForm{
+  position: relative;
+  text-align: center;
+  align-items: center;
+}
