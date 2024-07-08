@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>Arriendo</title>
 </head>
 
 <body>
     <br><br>
     <div class="row content">
-
-        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" (submit)="send()">
+        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" *ngIf="formArriendo" (submit)="send(false)">
             <div class="container recibo">
                 <div class="bodyInfo encabezado">
                     <div class="row titleInfo">
@@ -23,24 +21,24 @@
                         <div class="col colTitle anotherTitleInfo">
                             <div class="row rowInfo valueType">
                                 <div class="col value">
-                                    <label for="titleText" class="tag">$</label>
-                                    <!-- <span id="ValorRecibo" class="spanTags"></span> -->
+                                    <label for="valorNumero" class="tag">$</label>
                                     <input class="form-control transparent-input inputValorNumero" type="text"
-                                        id="valorNumero" formcontrolname="valorNumero">
+                                        id="valorNumero" formControlName="valorNumero"
+                                        [ngClass]="{'is-invalid': formArriendo.get('valorNumero')?.invalid && (formArriendo.get('valorNumero')?.dirty || formArriendo.get('valorNumero')?.touched)}">
                                 </div>
                                 <div class="col number">
-                                    <label for="titleText" class="tag">No.</label>
-                                    <!-- <span id="NumeroRecibo" class="spanTags"></span> -->
+                                    <label for="NumeroRecibo" class="tag">No.</label>
                                     <input class="form-control transparent-input inputNumeroRecibo" type="text"
-                                        id="NumeroRecibo" formcontrolname="NumeroRecibo">
+                                        id="NumeroRecibo" formControlName="NumeroRecibo"
+                                        [ngClass]="{'is-invalid': formArriendo.get('NumeroRecibo')?.invalid && (formArriendo.get('NumeroRecibo')?.dirty || formArriendo.get('NumeroRecibo')?.touched)}">
                                 </div>
                             </div>
                             <div class="row rowInfo dateType">
                                 <div class="col dateInfo">
-                                    <label for="titleText" class="tag">Fecha:</label>
-                                    <!-- <span id="FechaRecibo" class="spanTags"></span> -->
+                                    <label for="fechaRecibo" class="tag">Fecha:</label>
                                     <input class="form-control transparent-input inputfechaRecibo" type="text"
-                                        id="fechaRecibo" formcontrolname="fechaRecibo">
+                                        id="fechaRecibo" formControlName="fechaRecibo"
+                                        [ngClass]="{'is-invalid': formArriendo.get('fechaRecibo')?.invalid && (formArriendo.get('fechaRecibo')?.dirty || formArriendo.get('fechaRecibo')?.touched)}">
                                 </div>
                             </div>
                         </div>
@@ -49,77 +47,74 @@
                 <div class="bodyInfo informacion">
                     <div class="row dataClient">
                         <div class="col-12 dataClientCol nameClient">
-                            <label for="nameClient" class="tagClient">Recibí de:</label>
-                            <!-- <span id="arrendatario" class="spanTags">prueba</span> -->
+                            <label for="nombre" class="tagClient">Recibí de:</label>
                             <input class="form-control transparent-input inputnombre" type="text" id="nombre"
-                                formcontrolname="nombre">
+                                formControlName="nombre"
+                                [ngClass]="{'is-invalid': formArriendo.get('nombre')?.invalid && (formArriendo.get('nombre')?.dirty || formArriendo.get('nombre')?.touched)}">
                         </div>
                         <div class="col-12 dataClientCol valueClient">
-                            <label for="valueClient" class="tagClient">La suma de:</label>
-                            <!-- <span id="ValorTextoRecibo" class="spanTags"></span> -->
+                            <label for="valorTexto" class="tagClient">La suma de:</label>
                             <input class="form-control transparent-input inputvalorTexto" type="text" id="valorTexto"
-                                formcontrolname="valorTexto">
-
+                                formControlName="valorTexto"
+                                [ngClass]="{'is-invalid': formArriendo.get('valorTexto')?.invalid && (formArriendo.get('valorTexto')?.dirty || formArriendo.get('valorTexto')?.touched)}">
                         </div>
                         <div class="col-12 dataClientCol siteClient">
-                            <label for="siteClient" class="tagClient">Por concepto de arrendamiento de:</label>
-                            <!-- <span id="sitioRecibo" class="spanTags"></span> -->
+                            <label for="concepto" class="tagClient">Por concepto de arrendamiento de:</label>
                             <input class="form-control transparent-input inputconcepto" type="text" id="concepto"
-                                formcontrolname="concepto">
-
+                                formControlName="concepto"
+                                [ngClass]="{'is-invalid': formArriendo.get('concepto')?.invalid && (formArriendo.get('concepto')?.dirty || formArriendo.get('concepto')?.touched)}">
                         </div>
                         <div class="col-12 dataClientCol addressClient">
-                            <label for="addressClient" class="tagClient">Situado en:</label>
-                            <!-- <span id="DireccionRecibo" class="spanTags"></span> -->
+                            <label for="direccion" class="tagClient">Situado en:</label>
                             <input class="form-control transparent-input inputdireccion" type="text" id="direccion"
-                                formcontrolname="direccion">
-
+                                formControlName="direccion"
+                                [ngClass]="{'is-invalid': formArriendo.get('direccion')?.invalid && (formArriendo.get('direccion')?.dirty || formArriendo.get('direccion')?.touched)}">
                         </div>
                     </div>
                 </div>
                 <div class="bodyInfo fechas">
                     <div class="row dataRangeInfo">
                         <div class="fromDate dateRange">
-                            <label for="fromDate" class="tagDates">Del</label>
+                            <label for="diaFI" class="tagDates">Del</label>
                         </div>
                         <div class="col DateRangeContainer dateRange">
-                            <label for="fromDate" class="tagDates special">Día</label>
-                            <!-- <span id="diaDRecibo" class="spanTags"></span> -->
+                            <label for="diaFI" class="tagDates special">Día</label>
                             <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI"
-                                formcontrolname="diaFI">
+                                formControlName="diaFI"
+                                [ngClass]="{'is-invalid': formArriendo.get('diaFI')?.invalid && (formArriendo.get('diaFI')?.dirty || formArriendo.get('diaFI')?.touched)}">
                         </div>
                         <div class="col DateRangeContainer dateRange">
-                            <label for="fromDate" class="tagDates special">Mes</label>
-                            <!-- <span id="mesDRecibo" class="spanTags"></span> -->
+                            <label for="mesFI" class="tagDates special">Mes</label>
                             <input class="form-control transparent-input inputmesFI" type="text" id="mesFI"
-                                formcontrolname="mesFI">
+                                formControlName="mesFI"
+                                [ngClass]="{'is-invalid': formArriendo.get('mesFI')?.invalid && (formArriendo.get('mesFI')?.dirty || formArriendo.get('mesFI')?.touched)}">
                         </div>
                         <div class="col DateRangeContainer dateRange">
-                            <label for="fromDate" class="tagDates special">Año</label>
-                            <!-- <span id="anioDRecibo" class="spanTags"></span> -->
+                            <label for="anioFI" class="tagDates special">Año</label>
                             <input class="form-control transparent-input inputanioFI" type="text" id="anioFI"
-                                formcontrolname="anioFI">
+                                formControlName="anioFI"
+                                [ngClass]="{'is-invalid': formArriendo.get('anioFI')?.invalid && (formArriendo.get('anioFI')?.dirty || formArriendo.get('anioFI')?.touched)}">
                         </div>
                         <div class="fromDate dateRange">
-                            <label for="fromDate" class="tagDates">Al</label>
+                            <label for="diaFF" class="tagDates">Al</label>
                         </div>
                         <div class="col DateRangeContainer dateRange">
-                            <label for="fromDate" class="tagDates special">Día</label>
-                            <!-- <span id="diaARecibo" class="spanTags"></span> -->
+                            <label for="diaFF" class="tagDates special">Día</label>
                             <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF"
-                                formcontrolname="diaFF">
+                                formControlName="diaFF"
+                                [ngClass]="{'is-invalid': formArriendo.get('diaFF')?.invalid && (formArriendo.get('diaFF')?.dirty || formArriendo.get('diaFF')?.touched)}">
                         </div>
                         <div class="col DateRangeContainer dateRange">
-                            <label for="fromDate" class="tagDates special">Mes</label>
-                            <!-- <span id="mesARecibo" class="spanTags"></span> -->
+                            <label for="mesFF" class="tagDates special">Mes</label>
                             <input class="form-control transparent-input inputmesFF" type="text" id="mesFF"
-                                formcontrolname="mesFF">
+                                formControlName="mesFF"
+                                [ngClass]="{'is-invalid': formArriendo.get('mesFF')?.invalid && (formArriendo.get('mesFF')?.dirty || formArriendo.get('mesFF')?.touched)}">
                         </div>
                         <div class="col DateRangeContainer">
-                            <label for="fromDate" class="tagDates special">Año</label>
-                            <!-- <span id="anioARecibo" class="spanTags"></span> -->
+                            <label for="anioFF" class="tagDates special">Año</label>
                             <input class="form-control transparent-input inputanioFF" type="text" id="anioFF"
-                                formcontrolname="anioFF">
+                                formControlName="anioFF"
+                                [ngClass]="{'is-invalid': formArriendo.get('anioFF')?.invalid && (formArriendo.get('anioFF')?.dirty || formArriendo.get('anioFF')?.touched)}">
                         </div>
                     </div>
                 </div>
@@ -138,6 +133,8 @@
                 </div>
             </div>
         </form>
+
+
         <div class="col-auto wrapper">
             <div class="col">
                 <div class="col nav-item dropdown" (click)="loadClients()" style="position: relative; z-index: 1;">
@@ -147,7 +144,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu button-margin" style="position: absolute; z-index: 2;">
                         <li *ngFor="let client of clients">
-                            <a class="dropdown-item" (click)="PreLoadForm(client.id)">{{ client.names }}</a>
+                            <a class="dropdown-item" (click)="PreLoadForm(client.id, client.names)">{{
+                                client.names}}</a>
                         </li>
                     </ul>
                 </div>
@@ -161,12 +159,17 @@
                                     class="message">Añadir Servicios</span></span></button>
                     </div>
                     <div class="column">
-                        <button class="button"><i class="bi bi-arrow-repeat"></i><span class="message-container"><span
-                                    class="message">Reiniciar Formulario</span></span></button>
+                        <button class="button" (click)="resetForm()"><i class="bi bi-arrow-repeat"></i><span
+                                class="message-container"><span class="message">Reiniciar
+                                    Formulario</span></span></button>
                     </div>
                     <div class="column">
-                        <button class="button"><i class="bi bi-printer"></i> <span class="message-container"><span
-                                    class="message">Imprimir Factura</span></span></button>
+                        <button [disabled]="!formArriendo.valid" (click)="send(true)" class="button"><i class="bi bi-printer"></i> <span class="message-container"><span
+                                    class="message">Solo Imprimir</span></span></button>
+                    </div>
+                    <div class="column">
+                        <button type="submit" [disabled]="!formArriendo.valid" class="button"><i class="bi bi-file-earmark-arrow-down"></i> <span
+                                class="message-container"><span class="message">Imprimir y Guardar</span></span></button>
                     </div>
                 </div>
             </div>
@@ -178,32 +181,43 @@
 
 
 <!-- Modal -->
-<div class="modal fade  modal-centered" id="formClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-centered" id="formClientModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content bodyClientForm">
             <div class="modal-header">
-                <h5 class="modal-title" id="formClientModal">Agregar un nuevo cliente</h5>
+                <h5 class="modal-title" id="formClientModalLabel">Agregar un nuevo cliente</h5>
             </div>
-            <form class="" [formGroup]="formClient" (ngSubmit)="sendClient()">
-            <div class="modal-body ">
+            <form [formGroup]="formClient" (ngSubmit)="sendClient()">
+                <div class="modal-body">
                     <div class="col">
-                        <label for="clientTextForm" class="clientFormLabel">Nombre Completo</label>
-                        <input class="form-control" type="text" id="fullName" formControlName="fullName">
+                        <label for="fullName" class="clientFormLabel">Nombre Completo</label>
+                        <input class="form-control" type="text" id="fullName" formControlName="fullName"
+                            [ngClass]="{'is-invalid': formClient.get('fullName')?.invalid && (formClient.get('fullName')?.dirty || formClient.get('fullName')?.touched)}">
+                        <div *ngIf="formClient.get('fullName')?.hasError('pattern')" class="invalid-feedback">
+                            No se permiten espacios en blanco ni caracteres especiales.
+                        </div>
                     </div>
                     <div class="col">
-                        <label for="clientTextForm" class="clientFormLabel">Cedula</label>
-                        <input class="form-control" type="number" id="identification" formControlName="identification">
+                        <label for="identification" class="clientFormLabel">Cédula</label>
+                        <input class="form-control" type="text" maxlength="10"
+                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="1"
+                            id="identification" formControlName="identification"
+                            [ngClass]="{'is-invalid': formClient.get('identification')?.invalid && (formClient.get('identification')?.dirty || formClient.get('identification')?.touched)}">
                     </div>
                     <div class="col">
-                        <label for="clientTextForm" type="number" class="clientFormLabel">Telefono</label>
-                        <input class="form-control" type="number" id="phone" formControlName="phone">
+                        <label for="phone" class="clientFormLabel">Teléfono</label>
+                        <input class="form-control" type="text" maxlength="10"
+                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="1" id="phone"
+                            formControlName="phone"
+                            [ngClass]="{'is-invalid': formClient.get('phone')?.invalid && (formClient.get('phone')?.dirty || formClient.get('phone')?.touched)}">
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-success" >Guardar</button>
-            </div>
-        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!formClient.valid">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

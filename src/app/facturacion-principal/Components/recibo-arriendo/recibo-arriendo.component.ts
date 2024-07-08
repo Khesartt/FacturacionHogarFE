@@ -8,6 +8,7 @@ import { plainToInstance } from 'class-transformer';
 import { ClientInfo } from '../../Models/ClientInfo';
 import { LeaseReceipt } from '../../Models/ILeaseReceipt';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LeaseReceiptInfo } from '../../Models/LeaseReceiptInfo';
 
 declare var bootstrap: any;
 
@@ -22,9 +23,10 @@ export class ReciboArriendoComponent implements OnInit {
     formArriendo: FormGroup;
     formClient: FormGroup;
 
-    public clients: Client[]
-    public client: Client
-    public leaseReceipt: LeaseReceipt
+    public clients: Client[];
+    public client: Client;
+    public leaseReceipt: LeaseReceipt;
+    private currentClientId: number;
 
     constructor(private arriendoService: arriendoService, private formInitService: FormInitializationService) {
         this.formArriendo = this.formInitService.createArriendoForm();
@@ -32,7 +34,11 @@ export class ReciboArriendoComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadClients();
+    }
+
+    resetForm() {
+        this.formArriendo.reset();
+        this.currentClientId = 0;
     }
 
     async loadClients() {
@@ -58,25 +64,24 @@ export class ReciboArriendoComponent implements OnInit {
         }
     }
 
-    async PreLoadForm(id: number) {
+    async PreLoadForm(id: number, names: string) {
         try {
-            this.leaseReceipt = await firstValueFrom(this.arriendoService.getLastLeaseReceiptByClient(id));
-            console.log(this.client)
-        }
-        catch (error) {
+            var leaseReceipt = await firstValueFrom(this.arriendoService.getLastLeaseReceiptByClient(id));
+            this.formArriendo = this.formInitService.preloadArriendoForm(leaseReceipt);
+        } catch (error) {
             if (error instanceof HttpErrorResponse) {
-                console.error('Error status:', error.status);
-                console.error('Error message:', error.message);
-                // Puedes manejar diferentes estados de error aquí
                 if (error.status === 404) {
-                    console.error('Lease receipt not found');
-                } else if (error.status === 500) {
+                    this.formArriendo = this.formInitService.preloadEmptyArriendoForm(names);
+                }
+                else if (error.status === 500) {
                     console.error('Internal server error');
                 }
             } else {
                 console.error('Unexpected error:', error);
             }
         }
+
+        this.currentClientId = id;
     }
 
     openModal() {
@@ -108,15 +113,17 @@ export class ReciboArriendoComponent implements OnInit {
         myModal.hide();
     }
 
-    send() {
-        console.log("enviando data");
+    send(isPrint: boolean) {
+        console.log(this.formArriendo.value)
+        const formValues = this.formArriendo.value;
 
-    }
-
-    resetData() {
-        console.log("boton de borrado");
-    }
-    printData() {
-        console.log("imprimir data");
+        // Usa plainToInstance para convertir los datos del formulario al modelo
+        const leaseReceiptInfoInstance = plainToInstance(LeaseReceiptInfo, {
+            ...formValues,
+            receiptDate: formValues.fechaRecibo,
+            startDate: `${formValues.anioFI}-${formValues.mesFI}-${formValues.diaFI}`,
+            endDate: `${formValues.anioFF}-${formValues.mesFF}-${formValues.diaFF}`
+          });    
+        console.log(leaseReceiptInfoInstance);
     }
 }

@@ -324,7 +324,7 @@ margin-top: 4px;
 
 /*estilos fuera de plantilla*/
 input.transparent-input {
-  border:none !important
+  border:none
 }
 
 .transparent-input {
@@ -339,7 +339,7 @@ font-size: x-large;
 
 input.transparent-input{
      background-color:rgba(0,0,0,0) !important;
-     border:none !important;
+     border:none;
 }
 
 .inputValorNumero{
@@ -388,4 +388,7 @@ input.transparent-input{
   position: relative;
   text-align: center;
   align-items: center;
+}
+.invalid-feedback{
+  font-family: "redhat", Arial, Helvetica, sans-serif;
 }

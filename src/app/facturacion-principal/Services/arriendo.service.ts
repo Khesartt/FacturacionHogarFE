@@ -31,6 +31,6 @@ export class arriendoService {
   }
 
   getLastLeaseReceiptByClient(clientId:Number):Observable<LeaseReceipt>{
-    return this.http.get<LeaseReceipt>(this.baseUrl + this.lastLeaseReceipt + "/${clientId}")
+    return this.http.get<LeaseReceipt>(this.baseUrl + this.lastLeaseReceipt + "/" + clientId)
   }
 }
