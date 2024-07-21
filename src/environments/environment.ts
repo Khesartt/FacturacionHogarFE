@@ -7,7 +7,7 @@ export const environment = {
   baseUrl:"https://localhost:7127/",
   getClientsUrl: "api/Client/getAll",
   addClientUrl: "api/Client/Add",
-  lastLeaseReceipt: "api/LeaseReceipt/GetLastReceipt",
+  lastLeaseReceipt: "api/LeaseReceipt",
 };
 
 /*

@@ -11,7 +11,7 @@
 <body>
     <br><br>
     <div class="row content">
-        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" *ngIf="formArriendo" (submit)="send(false)">
+        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" *ngIf="formArriendo" (submit)="send(true)">
             <div class="container recibo">
                 <div class="bodyInfo encabezado">
                     <div class="row titleInfo">
@@ -137,7 +137,7 @@
 
         <div class="col-auto wrapper">
             <div class="col">
-                <div class="col nav-item dropdown" (click)="loadClients()" style="position: relative; z-index: 1;">
+                <div class="col nav-item dropdown" (click)="loadClients()" type="button" style="position: relative; z-index: 1;">
                     <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Clientes
@@ -164,12 +164,14 @@
                                     Formulario</span></span></button>
                     </div>
                     <div class="column">
-                        <button [disabled]="!formArriendo.valid" (click)="send(true)" class="button"><i class="bi bi-printer"></i> <span class="message-container"><span
-                                    class="message">Solo Imprimir</span></span></button>
+                        <button [disabled]="!formArriendo.valid" (click)="send(false)" class="button"><i
+                                class="bi bi-printer"></i> <span class="message-container"><span class="message">Solo
+                                    Imprimir</span></span></button>
                     </div>
                     <div class="column">
-                        <button type="submit" [disabled]="!formArriendo.valid" class="button"><i class="bi bi-file-earmark-arrow-down"></i> <span
-                                class="message-container"><span class="message">Imprimir y Guardar</span></span></button>
+                        <button type="submit" [disabled]="!formArriendo.valid" (click)="send(true)" class="button"><i
+                                class="bi bi-file-earmark-arrow-down"></i> <span class="message-container"><span
+                                    class="message">Imprimir y Guardar</span></span></button>
                     </div>
                 </div>
             </div>
@@ -219,5 +221,11 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner-border text-dark" role="status">
+        <span class="sr-only"></span>
     </div>
 </div>

@@ -51,7 +51,7 @@ export class FormInitializationService {
     return this.fb.group({
       valorNumero: [leaseReceipt.leaseAmount || "", [Validators.required, Validators.pattern("^[0-9]*$")]],
       fechaRecibo: [this.formatDate(receiptDate), Validators.required],
-      nombre: [leaseReceipt.fullNameClient || "", Validators.required],
+      nombre: [leaseReceipt.clientName || "", Validators.required],
       valorTexto: [leaseReceipt.leaseAmountInWords || "", Validators.required],
       concepto: [leaseReceipt.leaseDescription || "", Validators.required],
       direccion: [leaseReceipt.leaseAddress || "", Validators.required],

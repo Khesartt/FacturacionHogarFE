@@ -1,8 +1,8 @@
 export interface LeaseReceipt {
     receiptId: number;
     idClient: number;
-    fullNameClient?: string;
-    leaseAmount?: string;
+    clientName?: string;
+    leaseAmount?: number;
     receiptNumber?: string;
     leaseAmountInWords?: string;
     leaseDescription?: string;
@@ -10,4 +10,5 @@ export interface LeaseReceipt {
     receiptDate: Date;
     startDate: Date;
     endDate: Date;
+    shouldSave : boolean;
   }
