@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl:"https://localhost:7127/",
+  baseUrl:"https://localhost:9096/",
   getClientsUrl: "api/Client/getAll",
   addClientUrl: "api/Client/Add",
   lastLeaseReceipt: "api/LeaseReceipt",

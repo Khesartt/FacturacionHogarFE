@@ -7,6 +7,26 @@
   <title>Document</title>
 </head>
 <body>
-  <router-outlet></router-outlet>
+
+  <div class="container">
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-face card-front">
+          <div class="card-body">
+            <h5 class="card-title">Front Side</h5>
+            <p class="card-text">This is the front of the card.</p>
+            <button class="btn btn-primary flip-button">Flip to Back</button>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-body">
+            <h5 class="card-title">Back Side</h5>
+            <p class="card-text">This is the back of the card.</p>
+            <button class="btn btn-primary flip-button">Flip to Front</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

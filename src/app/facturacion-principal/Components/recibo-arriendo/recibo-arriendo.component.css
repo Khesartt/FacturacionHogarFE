@@ -1,32 +1,44 @@
 /* * {
-    border: 1px solid red;
+  border: 1px solid red;
 } */
 
 /* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 input[type="number"] {
-    appearance: textfield;
+  appearance: textfield;
 }
 
-.container {
-  margin: 1em;
-  padding: 0;
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 10px;
+}
+
+.contentRecibo{
+  align-self: flex-end; 
+  margin-left: 20%;
+}
+.contentMenu{
+  margin-left: 1%;
 }
 
 .recibo {
   background-color: #fff;
+  margin: 0;
   padding: 18px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 850px;
+  box-shadow: 0 60px 60px rgba(0, 0, 0, 0.1);
   width: 850px;
   height: 620px;
+  max-width: 850px;
 }
 
 .bodyInfo {
@@ -39,24 +51,28 @@ input[type="number"] {
   height: 20%;
   margin-top: 4px;
 }
+
 .informacion {
   height: 50%;
   margin-top: 8px;
 }
+
 .fechas {
   height: 8%;
   margin-top: 6px;
 }
+
 .firmas {
   height: 17%;
   margin-top: 6px;
 }
+
 /*contenedor por seccion*/
 
 /*seccion botones*/
 
-.button-container{
- margin-top: 2%; 
+.button-container {
+  margin-top: 2%;
 }
 
 .button-margin {
@@ -64,20 +80,7 @@ input[type="number"] {
   margin-bottom: 0;
 }
 
-.content{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.formWrapperLeisure{
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-.containerMenu{
+.containerMenu {
   border: 1px solid black;
   border-radius: 0.5rem;
   display: block;
@@ -87,18 +90,12 @@ input[type="number"] {
   width: 60px;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 10%;
-}
-
 .column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 6px; /* Espacio entre los botones */
+  margin-bottom: 6px;
+  /* Espacio entre los botones */
 }
 
 .button {
@@ -106,7 +103,7 @@ input[type="number"] {
   border: none;
   width: 50px;
   height: 50px;
-  padding: 10px; 
+  padding: 10px;
   margin: 5px;
   transition: transform 0.4s;
   position: relative;
@@ -119,7 +116,8 @@ input[type="number"] {
 .message-container {
   position: absolute;
   top: 50%;
-  left: calc(100% + 10px); /* Alinear a la derecha del botón */
+  left: calc(100% + 10px);
+  /* Alinear a la derecha del botón */
   transform: translateY(-50%);
   visibility: hidden;
   background-color: transparent;
@@ -140,8 +138,8 @@ input[type="number"] {
 }
 
 .button i {
-  font-size: 24px; 
-} 
+  font-size: 24px;
+}
 
 
 /*seccion de los titulos*/
@@ -171,16 +169,18 @@ input[type="number"] {
   text-align: center;
   line-height: 1.4em;
 }
+
 .tagClient {
   font-size: 24px;
   margin-top: 10px;
 }
+
 .tagDates {
   display: inline;
   position: absolute;
   font-size: 20px;
   margin-top: 2px;
-  margin-left:4px;
+  margin-left: 4px;
 }
 
 .rowInfo {
@@ -194,21 +194,23 @@ input[type="number"] {
   margin-left: 4px;
 }
 
-.valueType{
-margin-bottom: 4px;
+.valueType {
+  margin-bottom: 4px;
 }
 
-.dateType{
-margin-top: 4px;
+.dateType {
+  margin-top: 4px;
 }
 
 .value,
 .number {
   margin-bottom: 4px;
 }
+
 .dateInfo {
   margin-top: 2px;
 }
+
 .value {
   margin-right: 4px;
   border: 1px solid rgb(18, 128, 253);
@@ -216,6 +218,7 @@ margin-top: 4px;
   border-radius: 0.5rem;
 
 }
+
 .number {
   margin-left: 4px;
   border: 1px solid rgb(18, 128, 253);
@@ -223,11 +226,13 @@ margin-top: 4px;
   border-radius: 0.5rem;
 
 }
+
 .dateInfo {
   border: 1px solid rgb(18, 128, 253);
   background-color: rgba(218, 234, 255, 0.466);
   border-radius: 0.5rem;
 }
+
 /*seccion de los titulos*/
 /*seccion de la informacion*/
 .dataClient {
@@ -238,6 +243,7 @@ margin-top: 4px;
   border: 1px solid rgb(18, 128, 253);
   border-radius: 1em;
 }
+
 .dataClientCol {
   border-top: 1px solid rgb(18, 128, 253);
   border-bottom: 1px solid #1280fd;
@@ -245,13 +251,16 @@ margin-top: 4px;
   margin-bottom: 2px;
   margin-top: 6px;
 }
+
 .nameClient {
   margin-top: 12px;
 
 }
+
 .addressClient {
   margin-bottom: 12px;
 }
+
 /*seccion de la informacion*/
 /*seccion de rango de fechas*/
 .dataRangeInfo {
@@ -263,13 +272,15 @@ margin-top: 4px;
   background-color: rgba(218, 234, 255, 0.466);
   border-radius: 0.5rem;
 }
+
 .DateRangeContainer {
   flex: 1;
   padding: 5px;
-  position: relative; /* Necesario para posicionamiento absoluto de los inputs */
+  position: relative;
+  /* Necesario para posicionamiento absoluto de los inputs */
 }
 
-.dateRange{
+.dateRange {
   border-right: 1px solid rgb(18, 128, 253);
 }
 
@@ -309,9 +320,11 @@ margin-top: 4px;
   line-height: 1em;
   margin: 5px;
 }
-.singLine{
+
+.singLine {
   margin-top: 6%;
 }
+
 /*seccion de firmas*/
 /*los inputs a diseñar*/
 .spanTags {
@@ -324,42 +337,44 @@ margin-top: 4px;
 
 /*estilos fuera de plantilla*/
 input.transparent-input {
-  border:none
+  border: none
 }
 
 .transparent-input {
- background-color: rgba(0, 0, 0, 0);
- border:none;
- position: relative;
- display: inline;
- margin: 0;
- font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-font-size: x-large;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: relative;
+  display: inline;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: x-large;
 }
 
-input.transparent-input{
-     background-color:rgba(0,0,0,0) !important;
-     border:none;
+input.transparent-input {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: none;
 }
 
-.inputValorNumero{
-    width: 85%;
+.inputValorNumero {
+  width: 85%;
 }
 
-.inputNumeroRecibo{
+.inputNumeroRecibo {
   width: 70%;
 }
 
-.inputfechaRecibo{
+.inputfechaRecibo {
   width: 70.5%;
 }
 
-.inputnombre,.inputvalorTexto,.inputdireccion{
+.inputnombre,
+.inputvalorTexto,
+.inputdireccion {
   width: 80%;
 }
 
-.inputconcepto{
-  width: 50%;
+.inputconcepto {
+  width: 70%;
 }
 
 .inputdiaFI,
@@ -367,12 +382,11 @@ input.transparent-input{
 .inputanioFI,
 .inputdiaFF,
 .inputmesFF,
-.inputanioFF{
+.inputanioFF {
   position: absolute;
-  bottom: 0;
   right: 0;
   width: 70%;
-  height: 70%;
+  height: 75%;
 }
 
 .modal-centered {
@@ -380,18 +394,20 @@ input.transparent-input{
   transform: translate(0, -130%);
 }
 
-.clientFormLabel{
+.clientFormLabel {
   font-family: "redhat", Arial, Helvetica, sans-serif;
 }
 
-.bodyClientForm{
+.bodyClientForm {
   position: relative;
   text-align: center;
   align-items: center;
 }
-.invalid-feedback{
+
+.invalid-feedback {
   font-family: "redhat", Arial, Helvetica, sans-serif;
 }
+
 .spinner-overlay {
   position: fixed;
   top: 0;
@@ -403,12 +419,15 @@ input.transparent-input{
   align-items: center;
   background-color: rgba(124, 124, 124, 0.3);
   z-index: 9999;
-  
+
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   background-color: #000000;
 }
-.dropdown-item.active, .dropdown-item:active {
+
+.dropdown-item.active,
+.dropdown-item:active {
   background-color: #000000;
 }

@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <br><br>
-    <div class="row content">
-        <form class="col-8 formWrapperLeisure" [formGroup]="formArriendo" *ngIf="formArriendo" (submit)="send(true)">
-            <div class="container recibo">
+    <div class="content">
+        <form class="col-auto contentRecibo" [formGroup]="formArriendo" *ngIf="formArriendo" (submit)="send(true)">
+            <div class="recibo">
                 <div class="bodyInfo encabezado">
                     <div class="row titleInfo">
                         <div class="col colTitle titleText">
@@ -59,7 +58,7 @@
                                 [ngClass]="{'is-invalid': formArriendo.get('valorTexto')?.invalid && (formArriendo.get('valorTexto')?.dirty || formArriendo.get('valorTexto')?.touched)}">
                         </div>
                         <div class="col-12 dataClientCol siteClient">
-                            <label for="concepto" class="tagClient">Por concepto de arrendamiento de:</label>
+                            <label for="concepto" class="tagClient">Por concepto de:</label>
                             <input class="form-control transparent-input inputconcepto" type="text" id="concepto"
                                 formControlName="concepto"
                                 [ngClass]="{'is-invalid': formArriendo.get('concepto')?.invalid && (formArriendo.get('concepto')?.dirty || formArriendo.get('concepto')?.touched)}">
@@ -133,9 +132,7 @@
                 </div>
             </div>
         </form>
-
-
-        <div class="col-auto wrapper">
+        <div class="col-auto contentMenu">
             <div class="col">
                 <div class="col nav-item dropdown" (click)="loadClients()" type="button" style="position: relative; z-index: 1;">
                     <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown"
@@ -180,7 +177,6 @@
 </body>
 
 </html>
-
 
 <!-- Modal -->
 <div class="modal fade modal-centered" id="formClientModal" tabindex="-1" aria-labelledby="exampleModalLabel"
