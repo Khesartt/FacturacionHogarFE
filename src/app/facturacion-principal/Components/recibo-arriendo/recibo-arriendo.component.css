@@ -2,6 +2,47 @@
   border: 1px solid red;
 } */
 
+/* flip card*/
+.card-wrapper {
+  perspective: 3000px;
+}
+
+.card {
+  width: 850px;
+  height: 620px;
+  position: relative;
+  border: 0px solid black;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  margin: 0 auto; /* Center the card */
+}
+
+.content {
+  display: flex;
+  flex-direction: row; /* Change to column to stack elements vertically */
+  align-items: flex-start; /* Center elements horizontally */
+  justify-content: center; /* Center elements vertically */
+  position: absolute;
+  width: 100%; /* Ensure the content takes full width of the card */
+  height: 100%; /* Ensure the content takes full height of the card */
+  backface-visibility: hidden;
+  padding: 10px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-left: 10px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.flipped .card {
+  transform: rotateY(180deg);
+}
+.contentMenu {
+  margin-left: 2%; /* Space between contentMenu and contentRecibo */
+}
+/*flip card */
+
 /* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -14,28 +55,13 @@ input[type="number"] {
   appearance: textfield;
 }
 
-.content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 10px;
-  margin: 10px;
-}
-
-.contentRecibo{
-  align-self: flex-end; 
-  margin-left: 20%;
-}
-.contentMenu{
-  margin-left: 1%;
-}
-
 .recibo {
   background-color: #fff;
   margin: 0;
   padding: 18px;
   border-radius: 10px;
   box-shadow: 0 60px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
   width: 850px;
   height: 620px;
   max-width: 850px;

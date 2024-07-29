@@ -37,6 +37,21 @@ export class ReciboArriendoComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // document.querySelectorAll('.flip-button').forEach(button => {
+        //     button.addEventListener('click', () => {
+        //       const cardWrapper = button.closest('.content');
+        //       cardWrapper?.classList.toggle('flipped');
+        //     });
+        //   });
+
+
+        document.querySelectorAll('.flip-button').forEach(button => {
+            button.addEventListener('click', () => {
+              const cardWrapper = button.closest('.card-wrapper');
+              cardWrapper?.classList.toggle('flipped');
+            });
+          });
+
     }
 
     resetForm() {
