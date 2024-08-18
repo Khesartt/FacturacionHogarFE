@@ -11,4 +11,5 @@ export interface LeaseReceipt {
     startDate: Date;
     endDate: Date;
     shouldSave : boolean;
+    leaseReceiptType: string;
   }

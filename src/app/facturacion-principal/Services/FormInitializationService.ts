@@ -17,7 +17,7 @@ export class FormInitializationService {
   };
 
 
-  createArriendoForm(): FormGroup {
+  createLeaseBasicForm(): FormGroup {
     return this.fb.group({
       valorNumero: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
       fechaRecibo: ["", Validators.required],

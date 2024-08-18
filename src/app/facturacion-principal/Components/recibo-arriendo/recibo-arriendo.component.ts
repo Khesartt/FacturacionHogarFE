@@ -9,6 +9,7 @@ import { ClientInfo } from '../../Models/ClientInfo';
 import { LeaseReceipt } from '../../Models/ILeaseReceipt';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LeaseReceiptFile } from '../../Models/LeaseReceiptFile';
+import { LeaseReceiptType } from '../../Models/enumerators/LeaseReceiptType';
 
 declare var bootstrap: any;
 
@@ -20,8 +21,11 @@ declare var bootstrap: any;
 
 export class ReciboArriendoComponent implements OnInit {
 
-    formArriendo: FormGroup;
-    formClient: FormGroup;
+    public formArriendo: FormGroup;
+    public formClient: FormGroup;
+    public formService: FormGroup;
+
+    public LeaseReceiptType = LeaseReceiptType;
 
     public clients: Client[];
     public client: Client;
@@ -31,19 +35,16 @@ export class ReciboArriendoComponent implements OnInit {
     private currentClientId: number = 0;
     private currentReceiptId: number = 0;
 
+    private currentServiceClientId: number = 0;
+    private currentServiceReceiptId: number = 0;
+
     constructor(private arriendoService: arriendoService, private formInitService: FormInitializationService) {
-        this.formArriendo = this.formInitService.createArriendoForm();
+        this.formArriendo = this.formInitService.createLeaseBasicForm();
+        this.formService = this.formInitService.createLeaseBasicForm();
         this.formClient = this.formInitService.createClientForm();
     }
 
     ngOnInit(): void {
-        // document.querySelectorAll('.flip-button').forEach(button => {
-        //     button.addEventListener('click', () => {
-        //       const cardWrapper = button.closest('.content');
-        //       cardWrapper?.classList.toggle('flipped');
-        //     });
-        //   });
-
 
         document.querySelectorAll('.flip-button').forEach(button => {
             button.addEventListener('click', () => {
@@ -52,12 +53,19 @@ export class ReciboArriendoComponent implements OnInit {
             });
           });
 
+        this.loadClients();  
     }
 
-    resetForm() {
+    resetArriendoForm() {
         this.formArriendo.reset();
         this.currentClientId = 0;
         this.currentReceiptId = 0;
+    }
+
+    resetServiceForm() {
+        this.formService.reset();
+        this.currentServiceClientId = 0;
+        this.currentServiceReceiptId = 0;
     }
 
     async loadClients() {
@@ -83,17 +91,37 @@ export class ReciboArriendoComponent implements OnInit {
         }
     }
 
-    async PreLoadForm(id: number, names: string) {
+    async PreLoadForm(id: number, names: string, leaseReceiptType: string) {
         try {
-            var leaseReceipt = await firstValueFrom(this.arriendoService.getLastLeaseReceiptByClient(id));
-            console.log(leaseReceipt);
-            this.formArriendo = this.formInitService.preloadArriendoForm(leaseReceipt);
-            this.currentReceiptId = leaseReceipt.receiptId;
+            var leaseReceipt = await firstValueFrom(this.arriendoService.getLastLeaseReceiptByClient(id,leaseReceiptType));
+            console.log(leaseReceiptType);
+
+            if(leaseReceiptType === LeaseReceiptType.Rent){
+                this.formArriendo = this.formInitService.preloadArriendoForm(leaseReceipt);
+                this.currentReceiptId = leaseReceipt.receiptId;
+                this.currentClientId = id;
+
+            }
+            else{
+                this.formService = this.formInitService.preloadArriendoForm(leaseReceipt);
+                this.currentServiceReceiptId = leaseReceipt.receiptId;
+                this.currentServiceClientId = id;
+            }
         } catch (error) {
             if (error instanceof HttpErrorResponse) {
                 if (error.status === 404) {
-                    this.formArriendo = this.formInitService.preloadEmptyArriendoForm(names);
-                    this.currentReceiptId = 0;
+
+                    if(leaseReceiptType === LeaseReceiptType.Rent){
+                        this.formArriendo = this.formInitService.preloadEmptyArriendoForm(names);
+                        this.currentReceiptId = 0;
+                        this.currentClientId = id;
+
+                    }
+                    else{
+                        this.formService = this.formInitService.preloadEmptyArriendoForm(names);
+                        this.currentServiceReceiptId = 0;
+                        this.currentServiceClientId = id;
+                    }
                 }
                 else if (error.status === 500) {
                     console.error('Internal server error');
@@ -102,8 +130,6 @@ export class ReciboArriendoComponent implements OnInit {
                 console.error('Unexpected error:', error);
             }
         }
-
-        this.currentClientId = id;
     }
 
     openModal() {
@@ -135,11 +161,11 @@ export class ReciboArriendoComponent implements OnInit {
         myModal.hide();
     }
 
-    async send(isSaveLeisure: boolean) {
+    async send(isSaveLeisure: boolean, leaseReceiptType:string) {
         this.isLoading = true;
 
         try {
-            this.SetLastReceiptToSend(isSaveLeisure);
+            this.SetLastReceiptToSend(isSaveLeisure, leaseReceiptType);
 
             const leaseReceiptFile = await firstValueFrom(this.arriendoService.saveLeaseReceipt(this.leaseReceipt));
             console.log(leaseReceiptFile);
@@ -152,8 +178,17 @@ export class ReciboArriendoComponent implements OnInit {
     }
 
 
-    SetLastReceiptToSend(isSaveLeisure: boolean) {
-        const { anioFI, mesFI, diaFI, anioFF, mesFF, diaFF, fechaRecibo, nombre, valorNumero, NumeroRecibo, valorTexto, concepto, direccion } = this.formArriendo.value;
+    SetLastReceiptToSend(isSaveLeisure: boolean, receiptType:string) {
+        let anioFI: number, mesFI: number, diaFI: number, anioFF: number, mesFF: number, diaFF: number;
+        let fechaRecibo: string, nombre: string, valorNumero: number, NumeroRecibo: string, valorTexto: string, concepto: string, direccion: string;
+
+        if(receiptType === LeaseReceiptType.Rent){
+            ({ anioFI, mesFI, diaFI, anioFF, mesFF, diaFF, fechaRecibo, nombre, valorNumero, NumeroRecibo, valorTexto, concepto, direccion } = this.formArriendo.value);
+        }
+        else{
+            ({ anioFI, mesFI, diaFI, anioFF, mesFF, diaFF, fechaRecibo, nombre, valorNumero, NumeroRecibo, valorTexto, concepto, direccion } = this.formService.value);
+        }
+
 
         const startDateAdjust = new Date(anioFI, mesFI - 1, diaFI);
         const endDateAdjust = new Date(anioFF, mesFF - 1, diaFF);
@@ -161,9 +196,11 @@ export class ReciboArriendoComponent implements OnInit {
         const [day, month, year] = fechaRecibo.split('-').map(Number);
         const receiptDateAdjust = new Date(year, month - 1, day);
 
+        const details = this.getReceiptDetails(receiptType);
+
         this.leaseReceipt = {
-            receiptId: this.currentReceiptId,
-            idClient: this.currentClientId,
+            receiptId: details.receiptId,
+            idClient: details.clientId,
             clientName: nombre,
             leaseAmount: valorNumero,
             receiptNumber: NumeroRecibo,
@@ -173,9 +210,29 @@ export class ReciboArriendoComponent implements OnInit {
             receiptDate: receiptDateAdjust,
             startDate: startDateAdjust,
             endDate: endDateAdjust,
-            shouldSave: isSaveLeisure
+            shouldSave: isSaveLeisure,
+            leaseReceiptType: receiptType
         };
     }
+
+    getReceiptDetails(receiptType: string): { receiptId: number, clientId: number } {
+        let receiptId = 0;
+        let clientId = 0;
+    
+        switch (receiptType) {
+            case LeaseReceiptType.Service:
+                receiptId = this.currentServiceReceiptId;
+                clientId = this.currentServiceClientId;
+                break;
+            default:
+                receiptId = this.currentReceiptId;
+                clientId = this.currentClientId;
+                break;
+        }
+    
+        return { receiptId, clientId };
+    }
+    
 
     downloadFile(leaseReceiptFile: LeaseReceiptFile) {
         const base64Data = leaseReceiptFile.fileContent;
@@ -184,20 +241,16 @@ export class ReciboArriendoComponent implements OnInit {
 
         console.log(base64Data);
     
-        // Decodifica el base64 a una cadena binaria
         const binaryString = window.atob(base64Data);
         const len = binaryString.length;
         const bytes = new Uint8Array(len);
     
-        // Convierte la cadena binaria en un array de bytes
         for (let i = 0; i < len; i++) {
             bytes[i] = binaryString.charCodeAt(i);
         }
     
-        // Crea un Blob a partir del array de bytes
         const blob = new Blob([bytes], { type: fileType });
     
-        // Crea un URL para el Blob y descarga el archivo
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
@@ -205,7 +258,6 @@ export class ReciboArriendoComponent implements OnInit {
         document.body.appendChild(link);
         link.click();
     
-        // Limpia el DOM y libera el objeto URL
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     }

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="content content-front">
                 <form class="col-auto contentRecibo" [formGroup]="formArriendo" *ngIf="formArriendo"
-                    (submit)="send(true)">
+                    (submit)="send(true, LeaseReceiptType.Rent)">
                     <div class="recibo">
                         <div class="bodyInfo encabezado">
                             <div class="row titleInfo">
@@ -148,7 +148,7 @@
                             <ul class="dropdown-menu dropdown-menu button-margin"
                                 style="position: absolute; z-index: 2;">
                                 <li *ngFor="let client of clients">
-                                    <a class="dropdown-item" (click)="PreLoadForm(client.id, client.names)">{{
+                                    <a class="dropdown-item" (click)="PreLoadForm(client.id, client.names, LeaseReceiptType.Rent)">{{
                                         client.names}}</a>
                                 </li>
                             </ul>
@@ -165,18 +165,18 @@
                                             Servicios</span></span></button>
                             </div>
                             <div class="column">
-                                <button class="button" (click)="resetForm()"><i class="bi bi-arrow-repeat"></i><span
+                                <button class="button" (click)="resetArriendoForm()"><i class="bi bi-arrow-repeat"></i><span
                                         class="message-container"><span class="message">Reiniciar
                                             Formulario</span></span></button>
                             </div>
                             <div class="column">
-                                <button [disabled]="!formArriendo.valid" (click)="send(false)" class="button"><i
+                                <button [disabled]="!formArriendo.valid" (click)="send(false, LeaseReceiptType.Rent)" class="button"><i
                                         class="bi bi-printer"></i> <span class="message-container"><span
                                             class="message">Solo
                                             Imprimir</span></span></button>
                             </div>
                             <div class="column">
-                                <button type="submit" [disabled]="!formArriendo.valid" (click)="send(true)"
+                                <button type="submit" [disabled]="!formArriendo.valid" (click)="send(true, LeaseReceiptType.Rent)"
                                     class="button"><i class="bi bi-file-earmark-arrow-down"></i> <span
                                         class="message-container"><span class="message">Imprimir y
                                             Guardar</span></span></button>
@@ -186,13 +186,13 @@
                 </div>
             </div>
             <div class="content content-back card-back">
-                <form class="col-auto contentRecibo" [formGroup]="formArriendo" *ngIf="formArriendo"
-                    (submit)="send(true)">
+                <form class="col-auto contentRecibo" [formGroup]="formService" *ngIf="formService"
+                    (submit)="send(true, LeaseReceiptType.Service)">
                     <div class="recibo">
                         <div class="bodyInfo encabezado">
                             <div class="row titleInfo">
                                 <div class="col colTitle titleText">
-                                    <label for="titleText" class="tag">RECIBO DE ARRENDAMIENTO</label>
+                                    <label for="titleText" class="tag">RECIBO POR CONSUMO DE SERVICIOS</label>
                                 </div>
                                 <div class="col colTitle anotherTitleInfo">
                                     <div class="row rowInfo valueType">
@@ -200,13 +200,13 @@
                                             <label for="valorNumero" class="tag">$</label>
                                             <input class="form-control transparent-input inputValorNumero" type="text"
                                                 id="valorNumero" formControlName="valorNumero"
-                                                [ngClass]="{'is-invalid': formArriendo.get('valorNumero')?.invalid && (formArriendo.get('valorNumero')?.dirty || formArriendo.get('valorNumero')?.touched)}">
+                                                [ngClass]="{'is-invalid': formService.get('valorNumero')?.invalid && (formService.get('valorNumero')?.dirty || formService.get('valorNumero')?.touched)}">
                                         </div>
                                         <div class="col number">
                                             <label for="NumeroRecibo" class="tag">No.</label>
                                             <input class="form-control transparent-input inputNumeroRecibo" type="text"
                                                 id="NumeroRecibo" formControlName="NumeroRecibo"
-                                                [ngClass]="{'is-invalid': formArriendo.get('NumeroRecibo')?.invalid && (formArriendo.get('NumeroRecibo')?.dirty || formArriendo.get('NumeroRecibo')?.touched)}">
+                                                [ngClass]="{'is-invalid': formService.get('NumeroRecibo')?.invalid && (formService.get('NumeroRecibo')?.dirty || formService.get('NumeroRecibo')?.touched)}">
                                         </div>
                                     </div>
                                     <div class="row rowInfo dateType">
@@ -214,7 +214,7 @@
                                             <label for="fechaRecibo" class="tag">Fecha:</label>
                                             <input class="form-control transparent-input inputfechaRecibo" type="text"
                                                 id="fechaRecibo" formControlName="fechaRecibo"
-                                                [ngClass]="{'is-invalid': formArriendo.get('fechaRecibo')?.invalid && (formArriendo.get('fechaRecibo')?.dirty || formArriendo.get('fechaRecibo')?.touched)}">
+                                                [ngClass]="{'is-invalid': formService.get('fechaRecibo')?.invalid && (formService.get('fechaRecibo')?.dirty || formService.get('fechaRecibo')?.touched)}">
                                         </div>
                                     </div>
                                 </div>
@@ -226,25 +226,25 @@
                                     <label for="nombre" class="tagClient">Recibí de:</label>
                                     <input class="form-control transparent-input inputnombre" type="text" id="nombre"
                                         formControlName="nombre"
-                                        [ngClass]="{'is-invalid': formArriendo.get('nombre')?.invalid && (formArriendo.get('nombre')?.dirty || formArriendo.get('nombre')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('nombre')?.invalid && (formService.get('nombre')?.dirty || formService.get('nombre')?.touched)}">
                                 </div>
                                 <div class="col-12 dataClientCol valueClient">
                                     <label for="valorTexto" class="tagClient">La suma de:</label>
                                     <input class="form-control transparent-input inputvalorTexto" type="text"
                                         id="valorTexto" formControlName="valorTexto"
-                                        [ngClass]="{'is-invalid': formArriendo.get('valorTexto')?.invalid && (formArriendo.get('valorTexto')?.dirty || formArriendo.get('valorTexto')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('valorTexto')?.invalid && (formService.get('valorTexto')?.dirty || formService.get('valorTexto')?.touched)}">
                                 </div>
                                 <div class="col-12 dataClientCol siteClient">
                                     <label for="concepto" class="tagClient">Por concepto de:</label>
                                     <input class="form-control transparent-input inputconcepto" type="text"
                                         id="concepto" formControlName="concepto"
-                                        [ngClass]="{'is-invalid': formArriendo.get('concepto')?.invalid && (formArriendo.get('concepto')?.dirty || formArriendo.get('concepto')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('concepto')?.invalid && (formService.get('concepto')?.dirty || formService.get('concepto')?.touched)}">
                                 </div>
                                 <div class="col-12 dataClientCol addressClient">
                                     <label for="direccion" class="tagClient">Situado en:</label>
                                     <input class="form-control transparent-input inputdireccion" type="text"
                                         id="direccion" formControlName="direccion"
-                                        [ngClass]="{'is-invalid': formArriendo.get('direccion')?.invalid && (formArriendo.get('direccion')?.dirty || formArriendo.get('direccion')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('direccion')?.invalid && (formService.get('direccion')?.dirty || formService.get('direccion')?.touched)}">
                                 </div>
                             </div>
                         </div>
@@ -257,19 +257,19 @@
                                     <label for="diaFI" class="tagDates special">Día</label>
                                     <input class="form-control transparent-input inputdiaFI" type="text" id="diaFI"
                                         formControlName="diaFI"
-                                        [ngClass]="{'is-invalid': formArriendo.get('diaFI')?.invalid && (formArriendo.get('diaFI')?.dirty || formArriendo.get('diaFI')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('diaFI')?.invalid && (formService.get('diaFI')?.dirty || formService.get('diaFI')?.touched)}">
                                 </div>
                                 <div class="col DateRangeContainer dateRange">
                                     <label for="mesFI" class="tagDates special">Mes</label>
                                     <input class="form-control transparent-input inputmesFI" type="text" id="mesFI"
                                         formControlName="mesFI"
-                                        [ngClass]="{'is-invalid': formArriendo.get('mesFI')?.invalid && (formArriendo.get('mesFI')?.dirty || formArriendo.get('mesFI')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('mesFI')?.invalid && (formService.get('mesFI')?.dirty || formService.get('mesFI')?.touched)}">
                                 </div>
                                 <div class="col DateRangeContainer dateRange">
                                     <label for="anioFI" class="tagDates special">Año</label>
                                     <input class="form-control transparent-input inputanioFI" type="text" id="anioFI"
                                         formControlName="anioFI"
-                                        [ngClass]="{'is-invalid': formArriendo.get('anioFI')?.invalid && (formArriendo.get('anioFI')?.dirty || formArriendo.get('anioFI')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('anioFI')?.invalid && (formService.get('anioFI')?.dirty || formService.get('anioFI')?.touched)}">
                                 </div>
                                 <div class="fromDate dateRange">
                                     <label for="diaFF" class="tagDates">Al</label>
@@ -278,19 +278,19 @@
                                     <label for="diaFF" class="tagDates special">Día</label>
                                     <input class="form-control transparent-input inputdiaFF" type="text" id="diaFF"
                                         formControlName="diaFF"
-                                        [ngClass]="{'is-invalid': formArriendo.get('diaFF')?.invalid && (formArriendo.get('diaFF')?.dirty || formArriendo.get('diaFF')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('diaFF')?.invalid && (formService.get('diaFF')?.dirty || formService.get('diaFF')?.touched)}">
                                 </div>
                                 <div class="col DateRangeContainer dateRange">
                                     <label for="mesFF" class="tagDates special">Mes</label>
                                     <input class="form-control transparent-input inputmesFF" type="text" id="mesFF"
                                         formControlName="mesFF"
-                                        [ngClass]="{'is-invalid': formArriendo.get('mesFF')?.invalid && (formArriendo.get('mesFF')?.dirty || formArriendo.get('mesFF')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('mesFF')?.invalid && (formService.get('mesFF')?.dirty || formService.get('mesFF')?.touched)}">
                                 </div>
                                 <div class="col DateRangeContainer">
                                     <label for="anioFF" class="tagDates special">Año</label>
                                     <input class="form-control transparent-input inputanioFF" type="text" id="anioFF"
                                         formControlName="anioFF"
-                                        [ngClass]="{'is-invalid': formArriendo.get('anioFF')?.invalid && (formArriendo.get('anioFF')?.dirty || formArriendo.get('anioFF')?.touched)}">
+                                        [ngClass]="{'is-invalid': formService.get('anioFF')?.invalid && (formService.get('anioFF')?.dirty || formService.get('anioFF')?.touched)}">
                                 </div>
                             </div>
                         </div>
@@ -312,25 +312,44 @@
                 </form>
                 <div class="col-auto contentMenu">
                     <div class="col">
+                        <div class="col nav-item dropdown" (click)="loadClients()" type="button"
+                            style="position: relative; z-index: 1;">
+                            <button class="btn btn-outline-dark dropdown-toggle button-margin" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Clientes
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu button-margin"
+                                style="position: absolute; z-index: 2;">
+                                <li *ngFor="let client of clients">
+                                    <a class="dropdown-item" (click)="PreLoadForm(client.id, client.names, LeaseReceiptType.Service)">{{
+                                        client.names}}</a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="col containerMenu">
+                            <div class="column">
+                                <button class="button" (click)="openModal()"><i class="bi bi-person-plus"></i><span
+                                        class="message-container"><span class="message">Nuevo
+                                            Cliente</span></span></button>
+                            </div>
                             <div class="column">
                                 <button class="button flip-button"><i class="bi bi-receipt"></i><span
                                         class="message-container"><span class="message">Volver
                                             A Recibo</span></span></button>
                             </div>
                             <div class="column">
-                                <button class="button" (click)="resetForm()"><i class="bi bi-arrow-repeat"></i><span
+                                <button class="button" (click)="resetServiceForm()"><i class="bi bi-arrow-repeat"></i><span
                                         class="message-container"><span class="message">Reiniciar
                                             Formulario</span></span></button>
                             </div>
                             <div class="column">
-                                <button [disabled]="!formArriendo.valid" (click)="send(false)" class="button"><i
+                                <button [disabled]="!formService.valid" (click)="send(false, LeaseReceiptType.Service)" class="button"><i
                                         class="bi bi-printer"></i> <span class="message-container"><span
                                             class="message">Solo
                                             Imprimir</span></span></button>
                             </div>
                             <div class="column">
-                                <button type="submit" [disabled]="!formArriendo.valid" (click)="send(true)"
+                                <button type="submit" [disabled]="!formService.valid" (click)="send(true, LeaseReceiptType.Service)"
                                     class="button"><i class="bi bi-file-earmark-arrow-down"></i> <span
                                         class="message-container"><span class="message">Imprimir y
                                             Guardar</span></span></button>

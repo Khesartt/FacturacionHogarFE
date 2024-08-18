@@ -30,8 +30,8 @@ export class arriendoService {
     return this.http.put<Client>((this.baseUrl + this.addClientUrl), client)
   }
 
-  getLastLeaseReceiptByClient(clientId: Number): Observable<LeaseReceipt> {
-    return this.http.get<LeaseReceipt>(this.baseUrl + this.lastLeaseReceipt + "/GetLastReceipt/" + clientId)
+  getLastLeaseReceiptByClient(clientId: Number,leaseReceiptType: string ): Observable<LeaseReceipt> {
+    return this.http.get<LeaseReceipt>(this.baseUrl + this.lastLeaseReceipt + "/GetLastReceipt/" + clientId +"/" +leaseReceiptType)
   }
 
   saveLeaseReceipt(leaseReceipt: LeaseReceipt): Observable<LeaseReceiptFile> {
